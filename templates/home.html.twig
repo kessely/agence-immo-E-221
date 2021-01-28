@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+    {% block body %}
+    <pre>
+        
+    </pre>
+<div class="container mt-3">
+   <div class="jumbotron">
+       <h1 class="display-3">Bienvenue sur SymBNB !</h1>
+       <p class="lead">Nous mettons en relations les voyageurs et les propriétaires qui veulent profiter d'opportunités et gagner de l'argent en proposantleur bien à la location !</p>
+       <hr class="my-4">
+       <p>Vous etes voyageur ? Et vous voulez voir ou vous pourrez loger pour le prochain déplacement ?</p>
+       <p class="lead">
+           <a class="btn btn-primary btn-lg" href="#" role="button">Voir nos annonces</a>
+       </p>
+   </div>
+
+   <h2 class="h1 mt-3 my-5">Nos appartements stars</h2>
+
+   <div class="row ">
+        {% for data in ads %}
+          {% include "ad/_ad.html.twig" with {'ad': data.annonce} %}
+        {% endfor %}
+   </div>
+   <h2 class="h1 my-5">Nos propriétaires star !</h2>
+   <pre>
+        
+   </pre>
+   <div class="row ">
+    {% for data in users %}
+   <div class="col">
+        <div class="card border-secondary mb-3">
+             <div class="card-body">
+                   <h4 class="card-title">{{data.user.fullName}}</h4>
+                   <hr>
+                   <div class="card-text">
+                         <img src="{{data.user.picture}}" alt="avatar de {{data.user.fullName}}" class="float-left mr-3">
+                         <p>{{data.user.introduction}}</P>
+                         <a href="{{path('user_show', {'slug': data.user.slug})}}" class="btn btn-success float-right">En savoir plus</a>
+                   </div>
+             </div>
+           
+        </div>
+         
+        </div>
+  {% endfor %}
+          
+   </div>
+   
+
+{% endblock %}
